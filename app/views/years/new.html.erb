@@ -1,0 +1,14 @@
+New
+http://localhost:3009/years/new
+
+
+<%= form_with scope: :year, url: years_path, local: true do |form| %>
+  <p>
+    <%= form.label :year %><br>
+    <%= form.text_field :year %>
+  </p>
+
+  <p>
+    <%= form.submit %>
+  </p>
+<% end %>

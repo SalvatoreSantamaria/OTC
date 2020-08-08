@@ -10,13 +10,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_07_142638) do
+ActiveRecord::Schema.define(version: 2020_08_08_144503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "owners", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner_id"
+  end
+
+  create_table "owners_years", id: false, force: :cascade do |t|
+    t.bigint "owner_id", null: false
+    t.bigint "year_id", null: false
+    t.index ["owner_id"], name: "index_owners_years_on_owner_id"
+    t.index ["year_id"], name: "index_owners_years_on_year_id"
+  end
+
+  create_table "years", force: :cascade do |t|
+    t.integer "year"
+    t.integer "year_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
